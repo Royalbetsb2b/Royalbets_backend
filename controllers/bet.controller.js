@@ -159,7 +159,7 @@ exports.PlaceBet = async (req, res) => {
       }
 
       // Update user's balance with winnings
-      const updateBalance = parseFloat(user.balance) + amountWon;
+      const updateBalance = parseFloat(user.balance) + parseFloat(amountWon);
       user.balance = updateBalance;
       await user.save();
     } else {
