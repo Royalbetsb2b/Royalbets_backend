@@ -51,7 +51,7 @@ app.use(express.urlencoded({ extended: true }));
 //parse application/json
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({ origin: ["https://www.royalbets.xyz"] }));
 
 app.use("/auth", auth);
 app.use("/bet", bet);
