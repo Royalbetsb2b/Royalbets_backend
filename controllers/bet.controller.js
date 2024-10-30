@@ -45,15 +45,9 @@ exports.PlaceBet = async (req, res) => {
     let win = false;
     switch (gameType) {
       case "dice":
-        // Determine if the player wins by checking if the random number is below the selection
         win = randomNumber < selection;
-
-        // Calculate the multiplier based on the winning chance, as in the frontend
-        const multiplier =
-          selection <= 2 ? 50 : selection >= 98 ? 1.02 : 100 / selection;
-
-        // Calculate payout based on whether the user won
-        payout = win ? safeBetAmount * multiplier : 0;
+        const multiplier = 6 / (100 - selection + 1);
+        payout = safeBetAmount * multiplier;
         break;
       case "flip":
         win = selection === randomNumber % 2;
