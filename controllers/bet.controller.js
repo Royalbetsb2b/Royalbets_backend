@@ -53,7 +53,7 @@ exports.PlaceBet = async (req, res) => {
     switch (gameType) {
       case "dice":
         // Determine if the player wins by checking if the random number is below the selection
-        win = randomNumber < selection;
+        win = randomNumber <= selection;
 
         // Calculate the multiplier based on the winning chance, as in the frontend
         const multiplier =
