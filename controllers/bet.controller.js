@@ -16,7 +16,14 @@ const wallet = new ethers.Wallet(process.env.PRIVATEKEY, provider);
 
 exports.PlaceBet = async (req, res) => {
   try {
-    const { gameType, selection, referral, betAmount, feeReceiver } = req.body;
+    const {
+      gameType,
+      selection,
+      referral,
+      betAmount,
+      feeReceiver,
+      gameChance,
+    } = req.body;
     let user = req.user; // Assuming requireAuth middleware attaches user to req
     let payout;
 
@@ -50,7 +57,7 @@ exports.PlaceBet = async (req, res) => {
 
         // Calculate the multiplier based on the winning chance, as in the frontend
         const multiplier =
-          selection <= 2 ? 50 : selection >= 98 ? 1.02 : 100 / selection;
+          gameChance <= 2 ? 50 : gameChance >= 98 ? 1.02 : 100 / gameChance;
 
         // Calculate payout based on whether the user won
         payout = safeBetAmount * multiplier;
